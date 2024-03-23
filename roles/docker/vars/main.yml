@@ -1,6 +1,0 @@
----
-# vars file for docker
-OS: linux
-EXT: ubuntu
-user: docker
-group: docker

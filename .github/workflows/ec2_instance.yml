@@ -14,7 +14,5 @@ jobs:
     - name: Ansible playbook run
       run: |
         pip install boto boto3 ansible
-        which ansible
-        ansible --version
         ansible-galaxy collection install amazon.aws
         ansible-playbook -e ec2_access_key=${{ secrets.AWS_ACCESS_KEY }} -e ec2_secret_key=${{ secrets.AWS_SECRET_KEY }} playbook-aws.yml
