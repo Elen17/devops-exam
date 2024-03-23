@@ -1,8 +1,3 @@
-- name: Log in to Docker registry
-  docker_login:
-    username: "{{ DOCKER_USERNAME }}"
-    password: "{{ DOCKER_PASSWORD }}"
-    registry_url: "{{ REGISTRY_URL }}"
 
 - name: Create Nginx container
   docker_container:
