@@ -1,0 +1,16 @@
+- name: Log in to Docker registry
+  docker_login:
+    username: "{{ DOCKER_USERNAME }}"
+    password: "{{ DOCKER_PASSWORD }}"
+    registry_url: "{{ REGISTRY_URL }}"
+  when: "'{{ REGISTRY_URL }}' in inventory_hostname"
+
+- name: Create Nginx container
+  docker_container:
+    name: nginx
+    image: {{REGISTRY_URL}}:{{ IMAGE_TAG }}
+    recreate: yes
+    ports:
+     - "8080:80"
+    restart: yes
+    restart_policy: always

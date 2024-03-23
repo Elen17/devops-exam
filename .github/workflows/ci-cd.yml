@@ -1,0 +1,52 @@
+name: CI/CD Nginx
+env:
+  IMAGE_TAG: v${{ github.run_number }}
+
+on:
+  # push:
+  #   branches: [ "main" ]
+  # pull_request:
+  #   branches: [ "main" ]
+  workflow_dispatch:
+
+jobs:
+  build-push:
+
+    runs-on: ubuntu-latest
+
+    steps:
+    - uses: actions/checkout@v3
+
+    - name: Build the Docker image
+      run: |
+        cd homework_23
+        docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.Image_tag }}
+
+    - name: Login the Docker Hub
+      uses: docker/login-action@v3
+      with:
+        username: ${{ secrets.DOCKERHUB_USERNAME }}
+        password: ${{ secrets.DOCKERHUB_TOKEN }}
+
+    - name: Push to the Docker Hub
+      run: docker push ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.Image_tag }}
+
+  deploy:
+    runs-on: ubuntu-latest
+    needs: [build-push]
+    
+    steps:
+    - uses: actions/checkout@v3
+
+    - uses: webfactory/ssh-agent@v0.9.0
+      with:
+        ssh-private-key: ${{ secrets.SSH_PRIVATE_KEY }}
+
+    - name: add keyscan
+      run: |
+        filename=~/.ssh/known_hosts
+        ssh-keyscan 13.53.206.163 >> ~/.ssh/known_hosts
+
+    - name: Ansible playbook run
+      run: |
+        ansible-playbook -i inventory/dev/hosts -e image_tag=${{ env.Image_tag }} playbook.yml
