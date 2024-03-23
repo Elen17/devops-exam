@@ -2,6 +2,6 @@
 16.16.79.228 ansible_user=ubuntu
 
 [AWS:vars]
-network=monitoring
-image_tag=latest
+NETWORK=nginx
+IMAGE_TAG=latest
 REGISTRY_URL=elen17/nginx_custom
