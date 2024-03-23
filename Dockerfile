@@ -1,4 +1,4 @@
 FROM nginx
 
-COPY files/index.html /usr/share/www/html/
+COPY files/index.html /usr/share/nginx/www/html/
 
