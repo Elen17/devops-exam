@@ -5,9 +5,9 @@
     name: test-security-group
     description: "Sec group for app"
     region: "{{ region }}"
-    aws_access_key: "{{ec2_access_key}}"  # From vault as defined
-    aws_secret_key: "{{ec2_secret_key}}"  # From vault as defined
-    rules:                                # allows ssh on port 22
+    aws_access_key: "{{ec2_access_key}}"  
+    aws_secret_key: "{{ec2_secret_key}}"  
+    rules:                                 
       - proto: tcp
         ports:
           - 22
@@ -15,20 +15,9 @@
         rule_desc: allow all on ssh port
       - proto: tcp
         ports:
-          - 9090
+          - 8080
         cidr_ip: 0.0.0.0/0
         rule_desc: allow all on ssh port
-      - proto: tcp
-        ports:
-          - 9100
-        cidr_ip: 0.0.0.0/0
-        rule_desc: allow all on ssh port
-      - proto: tcp
-        ports:
-          - 3000
-        cidr_ip: 0.0.0.0/0
-        rule_desc: allow all on ssh port
-
 
 - name: Start an instance with a public IP address
   amazon.aws.ec2_instance:
