@@ -8,5 +8,3 @@ RUN apt-get update && \
 COPY files/index.html /var/www/html/
 EXPOSE 80
 EXPOSE 443
-
-CMD [ "/usr/sbin/nginx", "-g", "daemon off;" ]
