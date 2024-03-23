@@ -19,7 +19,7 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.Image_tag }}
+        docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.IMAGE_TAG }}
 
     - name: Login the Docker Hub
       uses: docker/login-action@v3
@@ -28,7 +28,7 @@ jobs:
         password: ${{ secrets.DOCKERHUB_TOKEN }}
 
     - name: Push to the Docker Hub
-      run: docker push ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.Image_tag }}
+      run: docker push ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.IMAGE_TAG }}
 
   deploy:
     runs-on: ubuntu-latest
@@ -48,4 +48,4 @@ jobs:
 
     - name: Ansible playbook run
       run: |
-        ansible-playbook -i inventory/dev/hosts -e image_tag=${{ env.Image_tag }} playbook.yml
+        ansible-playbook -i inventory/dev/hosts -e image_tag=${{ env.IMAGE_TAG }} playbook.yml
