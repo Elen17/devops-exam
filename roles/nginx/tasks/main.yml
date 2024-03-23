@@ -8,7 +8,7 @@
 - name: Create Nginx container
   docker_container:
     name: nginx
-    image: {{REGISTRY_URL}}:{{ IMAGE_TAG }}
+    image: "{{REGISTRY_URL}}:{{ IMAGE_TAG }}"
     recreate: yes
     ports:
      - "8080:80"
