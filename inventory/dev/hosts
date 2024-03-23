@@ -1,5 +1,5 @@
 [AWS]
-13.53.206.163 ansible_user=ubuntu
+16.16.79.228 ansible_user=ubuntu
 
 [AWS:vars]
 network=monitoring
