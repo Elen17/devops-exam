@@ -19,7 +19,6 @@ jobs:
 
     - name: Build the Docker image
       run: |
-        cd homework_23
         docker build . --file Dockerfile --tag ${{secrets.DOCKERHUB_REGISTRY_URL}}:${{ env.Image_tag }}
 
     - name: Login the Docker Hub
