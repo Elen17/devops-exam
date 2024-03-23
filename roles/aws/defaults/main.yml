@@ -1,0 +1,7 @@
+---
+key_name: devops           # Key used for SSH
+region: us-east-1     # Region may affect response and pricing
+image: ami-07d9b9ddc6cd8dd30 # look in ec2 > ami (filter owner alias: amazon) or amis of manually launched instances
+id: "example testing"
+instance_type: t2.micro       # Choose instance type, check AWS for pricing
+sec_group: "test-security-group"
