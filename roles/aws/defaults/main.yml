@@ -1,7 +1,7 @@
 ---
 key_name: aws-ssh-key          
 region: eu-north-1 
-image: ami-07d9b9ddc6cd8dd30 # look in ec2 > ami (filter owner alias: amazon) or amis of manually launched instances
+image: ami-0914547665e6a707c # look in ec2 > ami (filter owner alias: amazon) or amis of manually launched instances
 id: "AWS Instance"
 instance_type: t3.micro      
-sec_group: "AWS-security-group"
+security_group: "AWS-security-group"
