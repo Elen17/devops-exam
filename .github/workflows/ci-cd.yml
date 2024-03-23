@@ -48,4 +48,4 @@ jobs:
 
     - name: Ansible playbook run
       run: |
-        ansible-playbook -i inventory/dev/hosts -e image_tag=${{ env.IMAGE_TAG }} playbook.yml
+        ansible-playbook -i inventory/dev/hosts -e IMAGE_TAG=${{ env.IMAGE_TAG }} playbook.yml
